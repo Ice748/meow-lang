@@ -1,7 +1,7 @@
 <div align="center">
   <img alt="meow-lang logo" title="meow-lang logo" src="https://github.com/user-attachments/assets/65fcef37-8ded-4972-9e23-ebdaabd99768" />
 
-  meow is an open-source interpreted systems programming language designed to solve any task: console, web and desktop applications. It combines dynamic module system management and a file-based execution system. meow is built to be fast, lightweight, and super easy to learn for everyone! Enjoy! (:
+  meow is an open-source interpreted systems programming language designed to solve any task: console, web, desktop and much more! It combines dynamic module system management and a file-based execution system. meow is built to be fast, lightweight, and super easy to learn for everyone! Enjoy! (:
 
   [![Github All Releases](https://img.shields.io/github/downloads/Ice748/meow-lang/total.svg?style=flat)](https://github.com/Ice748/meow-lang/releases)
   [![GitHub Stars](https://img.shields.io/github/stars/Ice748/meow-lang?style=flat)](https://github.com/Ice748/meow-lang/stargazers)
