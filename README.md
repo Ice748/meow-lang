@@ -3,7 +3,10 @@
 
   meow is an open-source interpreted systems programming language designed to solve any task: console, web and desktop applications. It combines dynamic module system management and a file-based execution system. meow is built to be fast, lightweight, and super easy to learn for everyone! Enjoy! (:
 
+  [![Github All Releases](https://img.shields.io/github/downloads/Ice748/meow-lang/total.svg?style=flat)](https://github.com/Ice748/meow-lang/releases)
   [![GitHub Stars](https://img.shields.io/github/stars/Ice748/meow-lang?style=flat)](https://github.com/Ice748/meow-lang/stargazers)
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+  [![Open Source](https://img.shields.io/badge/open_source-❤️-white)](https://github.com/Ice748/meow-lang)
 </div>
 
 ---
