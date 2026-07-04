@@ -54,6 +54,26 @@ int main(int argc, char const *argv[]) {
     return 0;
   }
 
+  if (strcmp(argv[1], "help") == 0) {
+    if (argc > 2) {
+      printf("%s\n", ERROR_002); // ERROR 002: Too much arguments.
+      return 1;
+    }
+
+    printf("%s\n", HELP);
+    return 0;
+  }
+
+  if (strcmp(argv[1], "docs") == 0) {
+    if (argc > 2) {
+      printf("%s\n", ERROR_002); // ERROR 002: Too much arguments.
+      return 1;
+    }
+
+    printf("%s\n", DOCS);
+    return 0;
+  }
+
   printf("%s\n", ERROR_003); // ERROR 003: Unknown command.
   return 1;
 }
