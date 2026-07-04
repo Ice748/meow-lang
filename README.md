@@ -5,7 +5,7 @@
 
   [![Github All Releases](https://img.shields.io/github/downloads/Ice748/meow-lang/total.svg?style=flat)](https://github.com/Ice748/meow-lang/releases)
   [![GitHub Stars](https://img.shields.io/github/stars/Ice748/meow-lang?style=flat)](https://github.com/Ice748/meow-lang/stargazers)
-  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+  [![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
   [![Open Source](https://img.shields.io/badge/open_source-❤️-white)](https://github.com/Ice748/meow-lang)
 </div>
 
