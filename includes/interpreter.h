@@ -1,6 +1,9 @@
 #ifndef INTERPRETER_H
 #define INTERPRETER_H
 
-int run(void);
+#include <stdio.h>
+#include <string.h>
+
+int run(FILE *file);
 
 #endif
