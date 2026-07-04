@@ -1,5 +1,4 @@
 #include "interpreter.h"
-#include "modules/console.h"
 
 char *getArgString(char *ptr, const char *module, const char *function);
 
