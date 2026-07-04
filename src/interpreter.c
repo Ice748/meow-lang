@@ -1,4 +1,45 @@
 #include "interpreter.h"
+#include "modules/console.h"
+
+char *getArgString(char *ptr, const char *module, const char *function);
+
+int run(FILE *file) {
+  if (file == NULL) {
+    printf("%s\n", ERROR_005); // ERROR 005: Cannot open file.
+    return 1;
+  }
+
+  int modules[1]; // 0: console
+  for (size_t idx = 0; idx < sizeof(modules); idx++) {
+    modules[idx] = 0;
+  }
+
+  char buffer[256];
+  int line = 0;
+  while (fgets(buffer, sizeof(buffer), file) != NULL) {
+    buffer[strcspn(buffer, "\n")] = '\0';
+    line++;
+
+    char *import_args = getArgString(buffer, NULL, "@import");
+    char *deimport_args = getArgString(buffer, NULL, "@deimport");
+    if (import_args != NULL || deimport_args != NULL) {
+      if (strcmp(import_args, "console") modules[0] = import_args ? 1 : 0;
+      else {
+        printf("Error in line %d:\n%s\n", line, ERROR_006); // ERROR 006: Unknown module.
+        return 1;
+      }
+
+      free(import_args ? import_args : deimport_args);
+      continue;
+    }
+
+    printf("Error in line %d\n", line);
+    return 1;
+  }
+
+  fclose(file);
+  return 0;
+}
 
 char *getArgString(char *ptr, const char *module, const char *function) {
   if (ptr == NULL || function == NULL) {
