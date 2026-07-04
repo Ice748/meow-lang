@@ -33,6 +33,16 @@ int run(FILE *file) {
       continue;
     }
 
+    char *launch_args = getArgString(buffer, NULL, "@launch");
+    if (launch_args != NULL) {
+      FILE *launch_file = fopen(launch_args, "r");
+      run(launch_file);
+    }
+
+    if (modules[0]) {
+      console_module();
+    }
+
     printf("Error in line %d\n", line);
     return 1;
   }
