@@ -1,8 +1,8 @@
 #include "interpreter.h"
 
-char *getArgString(char *ptr, const char *module, const char *function);
+char *getArgString(char *str, const char *module, const char *function);
 
-int run(char *file_name) {
+int run(const char *file_name) {
   FILE *file = fopen(file_name, "r");
 
   if (file == NULL) {
@@ -75,67 +75,67 @@ int run(char *file_name) {
   return 0;
 }
 
-char *getArgString(char *ptr, const char *module, const char *function) {
-  if (ptr == NULL || function == NULL) {
+char *getArgString(char *str, const char *module, const char *function) {
+  if (str == NULL || function == NULL) {
     return NULL;
   }
-  
-  while (isspace((unsigned char)*ptr)) ptr++;
+
+  while (isspace((unsigned char)*str)) str++;
   if (module != NULL) {
     size_t module_len = strlen(module);
-    if (strncmp(ptr, module, module_len) != 0) {
+    if (strncmp(str, module, module_len) != 0) {
       return NULL;
     }
-    ptr += module_len;
+    str += module_len;
 
-    while (isspace((unsigned char)*ptr)) ptr++;
-    if (*ptr != '.') {
+    while (isspace((unsigned char)*str)) str++;
+    if (*str != '.') {
       return NULL;
     }
-    ptr++;
+    str++;
 
-    while (isspace((unsigned char)*ptr)) ptr++;
+    while (isspace((unsigned char)*str)) str++;
   }
 
   size_t function_len = strlen(function);
-  if (strncmp(ptr, function, function_len) != 0) {
+  if (strncmp(str, function, function_len) != 0) {
     return NULL;
   }
-  ptr += function_len;
+  str += function_len;
 
-  while (isspace((unsigned char)*ptr)) ptr++;
-  if (*ptr != '(') {
+  while (isspace((unsigned char)*str)) str++;
+  if (*str != '(') {
     return NULL;
   }
-  ptr++;
+  str++;
 
-  while (isspace((unsigned char)*ptr)) ptr++;
-  if (*ptr != '"') {
+  while (isspace((unsigned char)*str)) str++;
+  if (*str != '"') {
     return NULL;
   }
-  ptr++;
+  str++;
 
   char *result = NULL;
   size_t len = 0;
-  
-  while (*ptr != '"' && *ptr != '\0') {
+
+  while (*str != '"' && *str != '\0') {
     char *temp = realloc(result, len + 2);
     if (temp == NULL) {
       if (result != NULL) free(result);
       return NULL;
     }
     result = temp;
-    
-    result[len] = *ptr;
+
+    result[len] = *str;
     len++;
-    ptr++;
+    str++;
   }
 
-  if (*ptr != '"') {
+  if (*str != '"') {
     free(result);
     return NULL;
   }
-  ptr++;
+  str++;
 
   if (result != NULL) {
     result[len] = '\0';
@@ -144,12 +144,12 @@ char *getArgString(char *ptr, const char *module, const char *function) {
     if (result == NULL) return NULL;
   }
 
-  while (isspace((unsigned char)*ptr)) ptr++;
-  if (*ptr != ')') {
+  while (isspace((unsigned char)*str)) str++;
+  if (*str != ')') {
     free(result);
     return NULL;
   }
-  ptr++;
+  str++;
 
   return result;
 }
