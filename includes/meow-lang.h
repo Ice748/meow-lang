@@ -10,12 +10,11 @@
 #define ERROR_005 "ERROR 005: Cannot open file."
 #define ERROR_006 "ERROR 006: Unknown module."
 
-#define HELP
-  "run <file name>: Run file.\n"\
-  "new: Create new .meow file.\n"\
-  "version: Write interpreter version.\n"\
-  "help: Write this list.\n"\
-  "docs: Write docs."
+#define HELP "run <file name>: Run file.\n"\
+             "new: Create new .meow file.\n"\
+             "version: Write interpreter version.\n"\
+             "help: Write this list.\n"\
+             "docs: Write docs."
 #define DOCS "Nothing here yet..."
 
 #endif
