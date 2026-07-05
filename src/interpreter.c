@@ -63,7 +63,7 @@ int run(char *file_name) {
     }
 
     if (modules[0]) {
-      if (console_module() == 1) continue;
+      if (console_module(buffer) == 1) continue;
     }
 
     printf("Error in %s in line %d\n", file_name, line);
