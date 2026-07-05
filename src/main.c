@@ -17,9 +17,8 @@ int main(int argc, char const *argv[]) {
       printf("%s\n", ERROR_002); // ERROR 002: Too many arguments.
       return 1;
     }
-
-    FILE *file = fopen(argv[2], "r");
-    return run(file);
+    
+    return run(argv[2]);
   }
 
   if (strcmp(argv[1], "new") == 0) {
