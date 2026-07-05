@@ -14,7 +14,7 @@ int main(int argc, char const *argv[]) {
       printf("%s\n", ERROR_001); // ERROR 001: Too few arguments.
       return 1;
     } else if (argc > 3) {
-      printf("%s\n", ERROR_002); // ERROR 002: Too much arguments.
+      printf("%s\n", ERROR_002); // ERROR 002: Too many arguments.
       return 1;
     }
 
@@ -24,7 +24,7 @@ int main(int argc, char const *argv[]) {
 
   if (strcmp(argv[1], "new") == 0) {
     if (argc > 2) {
-      printf("%s\n", ERROR_002); // ERROR 002: Too much arguments.
+      printf("%s\n", ERROR_002); // ERROR 002: Too many arguments.
       return 1;
     }
 
@@ -46,7 +46,7 @@ int main(int argc, char const *argv[]) {
 
   if (strcmp(argv[1], "version") == 0) {
     if (argc > 2) {
-      printf("%s\n", ERROR_002); // ERROR 002: Too much arguments.
+      printf("%s\n", ERROR_002); // ERROR 002: Too many arguments.
       return 1;
     }
 
@@ -56,7 +56,7 @@ int main(int argc, char const *argv[]) {
 
   if (strcmp(argv[1], "help") == 0) {
     if (argc > 2) {
-      printf("%s\n", ERROR_002); // ERROR 002: Too much arguments.
+      printf("%s\n", ERROR_002); // ERROR 002: Too many arguments.
       return 1;
     }
 
@@ -66,7 +66,7 @@ int main(int argc, char const *argv[]) {
 
   if (strcmp(argv[1], "docs") == 0) {
     if (argc > 2) {
-      printf("%s\n", ERROR_002); // ERROR 002: Too much arguments.
+      printf("%s\n", ERROR_002); // ERROR 002: Too many arguments.
       return 1;
     }
 
