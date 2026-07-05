@@ -8,7 +8,7 @@
 #include "meow-lang.h"
 #include "modules/console.h"
 
-char *getArg(char *str);
+char *getArgString(char *str);
 int run(FILE *file);
 
 #endif
