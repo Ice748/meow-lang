@@ -9,14 +9,14 @@ void print(char *arg) {
 }
 
 int console_module(char *str) {
-  char *println_arg = getArgString(str);
+  char *println_arg = getArgString(str, "console", "println");
   if (println_arg != NULL) {
     println(println_arg);
     free(println_arg);
     return 1;
   }
 
-  char *print_arg = getArgString(str);
+  char *print_arg = getArgString(str, "console", "print");
   if (print_arg != NULL) {
     print(print_arg);
     free(print_arg);
