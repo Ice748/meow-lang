@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include "meow-lang.h"
 #include "modules/console.h"
 
 char *getArg(char *str);
