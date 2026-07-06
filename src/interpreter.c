@@ -1,6 +1,6 @@
 #include "interpreter.h"
 
-char *getArgString(char *str, const char *module, const char *function);
+char *getArgString(char *ptr, const char *module, const char *function);
 
 int run(const char *file_name) {
   FILE *file = fopen(file_name, "r");
@@ -21,7 +21,14 @@ int run(const char *file_name) {
     buffer[strcspn(buffer, "\n")] = '\0';
     line++;
 
-    char *import_arg = getArgString(buffer, NULL, "@import");
+    char *ptr = buffer;
+
+    while (isspace((unsigned char)*ptr)) ptr++;
+    if (strlen(ptr) == 0) {
+      continue;
+    }
+
+    char *import_arg = getArgString(ptr, NULL, "@import");
     if (import_arg != NULL) {
       if (strcmp(import_arg, "console") == 0) modules[0] = 1;
       else {
@@ -35,7 +42,7 @@ int run(const char *file_name) {
       continue;
     }
 
-    char *deimport_arg = getArgString(buffer, NULL, "@deimport");
+    char *deimport_arg = getArgString(ptr, NULL, "@deimport");
     if (deimport_arg != NULL) {
       if (strcmp(deimport_arg, "console") == 0) modules[0] = 0;
       else {
@@ -49,7 +56,7 @@ int run(const char *file_name) {
       continue;
     }
 
-    char *launch_arg = getArgString(buffer, NULL, "@launch");
+    char *launch_arg = getArgString(ptr, NULL, "@launch");
     if (launch_arg != NULL) {
       if (run(launch_arg) == 0) {
         free(launch_arg);
@@ -63,7 +70,7 @@ int run(const char *file_name) {
     }
 
     if (modules[0]) {
-      if (console_module(buffer) == 1) continue;
+      if (console_module(ptr) == 1) continue;
     }
 
     printf("Error in %s in line %d\n", file_name, line);
@@ -75,50 +82,49 @@ int run(const char *file_name) {
   return 0;
 }
 
-char *getArgString(char *str, const char *module, const char *function) {
-  if (str == NULL || function == NULL) {
+char *getArgString(char *ptr, const char *module, const char *function) {
+  if (ptr == NULL || function == NULL) {
     return NULL;
   }
 
-  while (isspace((unsigned char)*str)) str++;
   if (module != NULL) {
     size_t module_len = strlen(module);
-    if (strncmp(str, module, module_len) != 0) {
+    if (strncmp(ptr, module, module_len) != 0) {
       return NULL;
     }
-    str += module_len;
+    ptr += module_len;
 
-    while (isspace((unsigned char)*str)) str++;
-    if (*str != '.') {
+    while (isspace((unsigned char)*ptr)) ptr++;
+    if (*ptr != '.') {
       return NULL;
     }
-    str++;
+    ptr++;
 
-    while (isspace((unsigned char)*str)) str++;
+    while (isspace((unsigned char)*ptr)) ptr++;
   }
 
   size_t function_len = strlen(function);
-  if (strncmp(str, function, function_len) != 0) {
+  if (strncmp(ptr, function, function_len) != 0) {
     return NULL;
   }
-  str += function_len;
+  ptr += function_len;
 
-  while (isspace((unsigned char)*str)) str++;
-  if (*str != '(') {
+  while (isspace((unsigned char)*ptr)) ptr++;
+  if (*ptr != '(') {
     return NULL;
   }
-  str++;
+  ptr++;
 
-  while (isspace((unsigned char)*str)) str++;
-  if (*str != '"') {
+  while (isspace((unsigned char)*ptr)) ptr++;
+  if (*ptr != '"') {
     return NULL;
   }
-  str++;
+  ptr++;
 
   char *result = NULL;
   size_t len = 0;
 
-  while (*str != '"' && *str != '\0') {
+  while (*ptr != '"' && *ptr != '\0') {
     char *temp = realloc(result, len + 2);
     if (temp == NULL) {
       if (result != NULL) free(result);
@@ -126,16 +132,16 @@ char *getArgString(char *str, const char *module, const char *function) {
     }
     result = temp;
 
-    result[len] = *str;
+    result[len] = *ptr;
     len++;
-    str++;
+    ptr++;
   }
 
-  if (*str != '"') {
+  if (*ptr != '"') {
     free(result);
     return NULL;
   }
-  str++;
+  ptr++;
 
   if (result != NULL) {
     result[len] = '\0';
@@ -144,12 +150,12 @@ char *getArgString(char *str, const char *module, const char *function) {
     if (result == NULL) return NULL;
   }
 
-  while (isspace((unsigned char)*str)) str++;
-  if (*str != ')') {
+  while (isspace((unsigned char)*ptr)) ptr++;
+  if (*ptr != ')') {
     free(result);
     return NULL;
   }
-  str++;
+  ptr++;
 
   return result;
 }
