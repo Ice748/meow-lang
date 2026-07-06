@@ -7,6 +7,6 @@
 
 void println(char *arg);
 void print(char *arg);
-int console_module(char *str);
+int console_module(char *ptr);
 
 #endif
