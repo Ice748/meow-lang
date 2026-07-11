@@ -1,7 +1,5 @@
 #include "interpreter.h"
 
-char *getArgString(char *ptr, const char *module, const char *function);
-
 int run(const char *file_name) {
   FILE *file = fopen(file_name, "r");
 
@@ -158,4 +156,46 @@ char *getArgString(char *ptr, const char *module, const char *function) {
   ptr++;
 
   return result;
+}
+
+int *getArgVoid(char *ptr, const char *module, const char *function) {
+  if (ptr == NULL || function == NULL) {
+    return NULL;
+  }
+
+  if (module != NULL) {
+    size_t module_len = strlen(module);
+    if (strncmp(ptr, module, module_len) != 0) {
+      return NULL;
+    }
+    ptr += module_len;
+
+    while (isspace((unsigned char)*ptr)) ptr++;
+    if (*ptr != '.') {
+      return NULL;
+    }
+    ptr++;
+
+    while (isspace((unsigned char)*ptr)) ptr++;
+  }
+
+  size_t function_len = strlen(function);
+  if (strncmp(ptr, function, function_len) != 0) {
+    return NULL;
+  }
+  ptr += function_len;
+
+  while (isspace((unsigned char)*ptr)) ptr++;
+  if (*ptr != '(') {
+    return NULL;
+  }
+  ptr++;
+
+  while (isspace((unsigned char)*ptr)) ptr++;
+  if (*ptr != ')') {
+    return NULL;
+  }
+  ptr++;
+
+  return 0;
 }
