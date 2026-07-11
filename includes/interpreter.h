@@ -9,6 +9,8 @@
 #include "modules/console.h"
 
 char *getArgString(char *ptr, const char *module, const char *function);
+char *getArgVoid(char *ptr, const char *module, const char *function);
+
 int run(const char *file_name);
 
 #endif
